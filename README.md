@@ -143,6 +143,28 @@
     cd ng-15-mf
     npm i -DE @angular-architects/module-federation@15.0.3
     npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project mfe15 --port 4203 --type remote
+    ```
+
+1. Edit various files
+
+    1. Replace tabs with spaces in `ng-15-mf/angular.json`.
+    1. Insert newline at the bottom of `ng-15-mf/angular.json`.
+    1. Insert newline at the bottom of `ng-15-mf/package.json`.
+    1. Restore comment atop `ng-15-mf/tsconfig.json`.
+    1. Insert newline at the bottom of `ng-15-mf/tsconfig.json`.
+    1. Restore comment atop `ng-15-mf/projects/mfe15/tsconfig.app.json`.
+    1. Insert newline at the bottom of `ng-15-mf/projects/mfe15/tsconfig.app.json`.
+    1. Reformat `ng-15-mf/projects/mfe15/src/bootstrap.ts`.
+    1. Reformat `ng-15-mf/projects/mfe15/src/main.ts`.
+    1. Modify the `ng-15-mf/projects/mfe15/src/app/app.component.ts` and `ng-15-mf/projects/mfe15/src/app/app.component.html` to display the a simple page with the version of angular being used.
+
+1. Run the application to verify there are no errors.
+
+    ```shell
+    npm start
+    <Ctrl + C>
+    npm run run:all
+    <Ctrl + C>
     cd ..
     ```
 

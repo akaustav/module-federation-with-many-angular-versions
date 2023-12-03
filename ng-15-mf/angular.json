@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/mfe15",
             "index": "projects/mfe15/src/index.html",
@@ -32,7 +32,9 @@
             "styles": [
               "projects/mfe15/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "projects/mfe15/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -48,7 +50,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/mfe15/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -62,21 +65,28 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mfe15:build:production"
+              "browserTarget": "mfe15:build:production",
+              "extraWebpackConfig": "projects/mfe15/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "mfe15:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4203,
+            "publicHost": "http://localhost:4203",
+            "extraWebpackConfig": "projects/mfe15/webpack.config.js"
+          }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "mfe15:build"
+            "browserTarget": "mfe15:build",
+            "extraWebpackConfig": "projects/mfe15/webpack.config.js"
           }
         },
         "test": {
