@@ -61,6 +61,15 @@
     cd ..
     ```
 
+1. Generate an Angular 15 project
+
+    ```shell
+    npx -y -p @angular/cli@v15-lts ng new ng-15-mf --skip-git --no-create-application
+    cd ng-15-mf
+    npx -y -p @angular/cli@v15-lts ng generate application mfe15 --routing --style scss
+    cd ..
+    ```
+
 1. Initialize Micro Front Ends using `@angular-architects/module-federation`:
 
 ```shell
@@ -72,6 +81,11 @@ cd ..
 cd ng-14-mf
 npm i -DE @angular-architects/module-federation@14.3.14
 npx -y -p @angular/cli@v14-lts ng g @angular-architects/module-federation:init --project mfe14 --port 4202 --type remote
+cd ..
+
+cd ng-15-mf
+npm i -DE @angular-architects/module-federation@15.0.3
+npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project mfe15 --port 4203 --type remote
 cd ..
 
 cd shell
