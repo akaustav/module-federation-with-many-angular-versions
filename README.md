@@ -111,6 +111,29 @@
     cd ng-14-mf
     npm i -DE @angular-architects/module-federation@14.3.14
     npx -y -p @angular/cli@v14-lts ng g @angular-architects/module-federation:init --project mfe14 --port 4202 --type remote
+    ```
+
+1. Edit various files
+
+    1. Replace tabs with spaces in `ng-14-mf/angular.json`.
+    1. Insert newline at the bottom of `ng-14-mf/angular.json`.
+    1. Insert newline at the bottom of `ng-14-mf/package.json`.
+    1. Restore comment atop `ng-14-mf/tsconfig.json`.
+    1. Insert newline at the bottom of `ng-14-mf/tsconfig.json`.
+    1. Restore comment atop `ng-14-mf/projects/mfe14/tsconfig.app.json`.
+    1. Insert newline at the bottom of `ng-14-mf/projects/mfe14/tsconfig.app.json`.
+    1. Reformat white-spaces in `ng-14-mf/projects/mfe14/webpack.config.js`.
+    1. Reformat `ng-14-mf/projects/mfe14/src/bootstrap.ts`.
+    1. Reformat `ng-14-mf/projects/mfe14/src/main.ts`.
+    1. Modify the `ng-14-mf/projects/mfe14/src/app/app.component.ts` and `ng-14-mf/projects/mfe14/src/app/app.component.html` to display the a simple page with the version of angular being used.
+
+1. Run the application to verify there are no errors.
+
+    ```shell
+    npm start
+    <Ctrl + C>
+    npm run run:all
+    <Ctrl + C>
     cd ..
     ```
 
