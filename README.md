@@ -2,7 +2,7 @@
 
 ## Commands Used
 
-1. Install v15 Long Term Support (LTS) version of `@angular/cli` globally
+1. **OPTIONAL:** Install v15 Long Term Support (LTS) version of `@angular/cli` globally.
 
     ```shell
     npm -g i @angular/cli@v15-lts
@@ -14,12 +14,12 @@
     git init
     ```
 
-1. Generate the shell application:
+1. Generate an Angular 15 project to be used as the MFE host:
 
     ```shell
-    ng new shell --skip-git --no-create-application
+    npx -y -p @angular/cli@v15-lts ng new shell --skip-git --no-create-application
     cd shell
-    ng generate application shell --routing --style scss
+    npx -y -p @angular/cli@v15-lts ng generate application shell --routing --style scss
     cd ..
     ```
 
@@ -34,7 +34,7 @@
     cd ..
     ```
 
-1. Set the Angular 13 MFE application to use port `4201`. In the `ng-13-mf\angular.json` file, add an `options` object under `projects -> mfe13 -> architect -> serve` and set the value of `port` to `4201`. Full JSON path is `$.projects.mfe13.architect.serve.options.port = 4201`
+1. **OPTIONAL:** Set the Angular 13 MFE application to use port `4201`. In the `ng-13-mf\angular.json` file, add an `options` object under `projects -> mfe13 -> architect -> serve` and set the value of `port` to `4201`. Full JSON path is `$.projects.mfe13.architect.serve.options.port = 4201`
 
     ```json
     {
@@ -70,26 +70,64 @@
     cd ..
     ```
 
-1. Initialize Micro Front Ends using `@angular-architects/module-federation`:
+1. Initialize Angular 13 Micro Front End Remote using `@angular-architects/module-federation`:
 
-```shell
-cd ng-13-mf
-npm i -DE @angular-architects/module-federation@14.2.3
-npx -y -p @angular/cli@v13-lts ng g @angular-architects/module-federation:init --project mfe13 --port 4201
-cd ..
+    ```shell
+    cd ng-13-mf
+    npm i -DE @angular-architects/module-federation@14.2.3
+    npx -y -p @angular/cli@v13-lts ng g @angular-architects/module-federation:init --project mfe13 --port 4201
+    cd ..
+    ```
 
-cd ng-14-mf
-npm i -DE @angular-architects/module-federation@14.3.14
-npx -y -p @angular/cli@v14-lts ng g @angular-architects/module-federation:init --project mfe14 --port 4202 --type remote
-cd ..
+1. Edit various files
 
-cd ng-15-mf
-npm i -DE @angular-architects/module-federation@15.0.3
-npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project mfe15 --port 4203 --type remote
-cd ..
+    1. Replace tabs with spaces in `ng-13-mf/angular.json`.
+    1. Insert newline at the bottom of `ng-13-mf/angular.json`.
+    1. Insert newline at the bottom of `ng-13-mf/package.json`.
+    1. Restore comment atop `ng-13-mf/tsconfig.json`.
+    1. Insert newline at the bottom of `ng-13-mf/tsconfig.json`.
+    1. Restore comment atop `ng-13-mf/projects/mfe13/tsconfig.app.json`.
+    1. Insert newline at the bottom of `ng-13-mf/projects/mfe13/tsconfig.app.json`.
+    1. Replace double quotes with single quotes in `ng-13-mf/projects/mfe13/webpack.config.js`.
+    1. Uncomment the section for remotes in `ng-13-mf/projects/mfe13/webpack.config.js`.
+    1. Reformat white-spaces in `ng-13-mf/projects/mfe13/webpack.config.js`.
+    1. Reformat `ng-13-mf/projects/mfe13/src/bootstrap.ts`.
+    1. Reformat `ng-13-mf/projects/mfe13/src/main.ts`.
+    1. Modify the `ng-13-mf/projects/mfe13/src/app/app.component.ts` and `ng-13-mf/projects/mfe13/src/app/app.component.html` to display the a simple page with the version of angular being used.
 
-cd shell
-npm i -DE @angular-architects/module-federation@15.0.3
-npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project shell --port 4200 --type host
-cd ..
-```
+1. Run the application to verify there are no errors.
+
+    ```shell
+    npm start
+    <Ctrl + C>
+    npm run run:all
+    <Ctrl + C>
+    cd ..
+    ```
+
+1. Initialize Angular 14 Micro Front End Remote using `@angular-architects/module-federation`:
+
+    ```shell
+    cd ng-14-mf
+    npm i -DE @angular-architects/module-federation@14.3.14
+    npx -y -p @angular/cli@v14-lts ng g @angular-architects/module-federation:init --project mfe14 --port 4202 --type remote
+    cd ..
+    ```
+
+1. Initialize Angular 15 Micro Front End Remote using `@angular-architects/module-federation`:
+
+    ```shell
+    cd ng-15-mf
+    npm i -DE @angular-architects/module-federation@15.0.3
+    npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project mfe15 --port 4203 --type remote
+    cd ..
+    ```
+
+1. Initialize Angular 15 Micro Front End Host using `@angular-architects/module-federation`:
+
+    ```shell
+    cd shell
+    npm i -DE @angular-architects/module-federation@15.0.3
+    npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project shell --port 4200 --type host
+    cd ..
+    ```
