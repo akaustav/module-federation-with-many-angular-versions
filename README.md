@@ -173,6 +173,48 @@
     ```shell
     cd shell
     npm i -DE @angular-architects/module-federation@15.0.3
+    npm i -E @angular-architects/module-federation-tools@15.0.3
     npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project shell --port 4200 --type host
+    ```
+
+1. Edit various files
+
+    1. Replace tabs with spaces in `shell/angular.json`.
+    1. Insert newline at the bottom of `shell/angular.json`.
+    1. Insert newline at the bottom of `shell/package.json`.
+    1. Restore comment atop `shell/tsconfig.json`.
+    1. Insert newline at the bottom of `shell/tsconfig.json`.
+    1. Restore comment atop `shell/projects/shell/tsconfig.app.json`.
+    1. Insert newline at the bottom of `shell/projects/shell/tsconfig.app.json`.
+    1. Reformat `shell/projects/shell/webpack.config.js`.
+    1. Reformat `shell/projects/shell/src/bootstrap.ts`.
+    1. Reformat `shell/projects/shell/src/main.ts`.
+    1. Modify the `shell/projects/shell/src/app/app.component.ts` and `shell/projects/shell/src/app/app.component.html` to display the a simple page with the version of angular being used.
+
+1. Add the list of remotes within `shell/projects/shell/webpack.config.js`.
+
+    ```javascript
+    remotes: {
+      "mfe13": "http://localhost:4201/remoteEntry.js",
+      "mfe14": "http://localhost:4202/remoteEntry.js",
+      "mfe15": "http://localhost:4203/remoteEntry.js",
+    },
+    ```
+
+1. Open the `shell`'s router config (`shell\projects\shell\src\app\app-routing.module.ts`) and add the routes to load each of the microfrontends:
+
+    ```typescript
+    const routes: Routes = [
+      
+    ];
+    ```
+
+1. Run the application to verify there are no errors.
+
+    ```shell
+    npm start
+    <Ctrl + C>
+    npm run run:all
+    <Ctrl + C>
     cd ..
     ```
