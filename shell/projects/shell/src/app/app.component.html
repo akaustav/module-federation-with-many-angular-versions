@@ -1,8 +1,17 @@
-<nav>
-  <a routerLink="/">Home</a> |
-  <a routerLink="/angular13">Angular 13</a> |
-  <a routerLink="/angular14">Angular 14</a> |
-  <a routerLink="/angular15">Angular 15</a>
-</nav>
+<header>
+  <nav>
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a routerLink="/angular13" routerLinkActive="active">Angular 13</a>
+    <a routerLink="/angular14" routerLinkActive="active">Angular 14</a>
+    <a routerLink="/angular15" routerLinkActive="active">Angular 15</a>
+  </nav>
+</header>
 
-<router-outlet></router-outlet>
+<main>
+  <router-outlet></router-outlet>
+</main>
