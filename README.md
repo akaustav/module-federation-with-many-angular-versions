@@ -336,6 +336,13 @@
     ];
     ```
 
+1. Create a Home component in the shell applicaton and move the original logic inside that compoenent
+
+    ```shell
+    cd shell
+    npx -y -p @angular/cli@v15-lts ng g c Home
+    ```
+
 1. Run the application to verify there are no errors.
 
     ```shell
