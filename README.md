@@ -175,6 +175,7 @@
     npm i -DE @angular-architects/module-federation@15.0.3
     npm i -E @angular-architects/module-federation-tools@15.0.3
     npx -y -p @angular/cli@v15-lts ng g @angular-architects/module-federation:init --project shell --port 4200 --type host
+    cd ..
     ```
 
 1. Edit various files
@@ -191,7 +192,7 @@
     1. Reformat `shell/projects/shell/src/main.ts`.
     1. Modify the `shell/projects/shell/src/app/app.component.ts` and `shell/projects/shell/src/app/app.component.html` to display the a simple page with the version of angular being used.
 
-1. Add the list of remotes within `shell/projects/shell/webpack.config.js`.
+1. **Possibly OPTIONAL:** Add the list of remotes within `shell/projects/shell/webpack.config.js`.
 
     ```javascript
     remotes: {
@@ -200,6 +201,101 @@
       "mfe15": "http://localhost:4203/remoteEntry.js",
     },
     ```
+
+1. Install `@angular/elements` as a production dependency in each remote MFE:
+
+    ```shell
+    cd ng-13-mf
+    npm i -E @angular/elements@13.3.12
+    cd ../ng-14-mf
+    npm i -E @angular/elements@v14-lts
+    cd ../ng-15-mf
+    npm i -E @angular/elements@v15-lts
+    cd ..
+    ```
+
+1. Expose web components from the `app.module.ts` within each remote MFE in:
+
+    1. `ng-13-mf\projects\mfe13\src\app\app.module.ts`
+
+        ```typescript
+        import { NgModule, Injector, DoBootstrap } from '@angular/core';
+        import { BrowserModule } from '@angular/platform-browser';
+        import { NgElementConstructor, createCustomElement } from '@angular/elements';
+        import { AppRoutingModule } from './app-routing.module';
+        import { AppComponent } from './app.component';
+
+        @NgModule({
+          declarations: [AppComponent],
+          imports: [BrowserModule, AppRoutingModule],
+          bootstrap: [AppComponent],
+        })
+        export class AppModule implements DoBootstrap {
+          constructor(private injector: Injector) {}
+    
+          public ngDoBootstrap(): void {
+            const ce: NgElementConstructor<void> = createCustomElement<void>(
+              AppComponent,
+              { injector: this.injector }
+            );
+            customElements.define('angular13-element', ce);
+          }
+        }
+        ```
+
+    1. `ng-14-mf\projects\mfe14\src\app\app.module.ts`
+
+        ```typescript
+        import { NgModule, Injector, DoBootstrap } from '@angular/core';
+        import { BrowserModule } from '@angular/platform-browser';
+        import { NgElementConstructor, createCustomElement } from '@angular/elements';
+        import { AppRoutingModule } from './app-routing.module';
+        import { AppComponent } from './app.component';
+
+        @NgModule({
+          declarations: [AppComponent],
+          imports: [BrowserModule, AppRoutingModule],
+          bootstrap: [AppComponent],
+        })
+        export class AppModule implements DoBootstrap {
+          constructor(private injector: Injector) {}
+    
+          public ngDoBootstrap(): void {
+            const ce: NgElementConstructor<void> = createCustomElement<void>(
+              AppComponent,
+              { injector: this.injector }
+            );
+            customElements.define('angular14-element', ce);
+          }
+        }
+        ```
+
+    1. `ng-15-mf\projects\mfe15\src\app\app.module.ts`
+
+        ```typescript
+        import { NgModule, Injector, DoBootstrap } from '@angular/core';
+        import { BrowserModule } from '@angular/platform-browser';
+        import { NgElementConstructor, createCustomElement } from '@angular/elements';
+        import { AppRoutingModule } from './app-routing.module';
+        import { AppComponent } from './app.component';
+
+        @NgModule({
+          declarations: [AppComponent],
+          imports: [BrowserModule, AppRoutingModule],
+          bootstrap: [AppComponent],
+        })
+        export class AppModule implements DoBootstrap {
+          constructor(private injector: Injector) {}
+    
+          public ngDoBootstrap(): void {
+            const ce: NgElementConstructor<void> = createCustomElement<void>(
+              AppComponent,
+              { injector: this.injector }
+            );
+            customElements.define('angular15-element', ce);
+          }
+        }
+        ```
 
 1. Open the `shell`'s router config (`shell\projects\shell\src\app\app-routing.module.ts`) and add the routes to load each of the microfrontends:
 
