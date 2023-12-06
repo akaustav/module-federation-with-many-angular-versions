@@ -352,3 +352,41 @@
     <Ctrl + C>
     cd ..
     ```
+
+## TODO
+
+- [ ] **FIXME:** When accessing the Angular 13 application, the page displays blank with the following error in the browser console:
+
+    ```
+    angular-architects-module-federation-tools.mjs:39
+    Error: Unsatisfied version 15.2.0 from shell of shared singleton module @angular/core (required ~13.3.0)
+      at getStrictSingletonVersion (remoteEntry.js:3389:58)
+      at remoteEntry.js:3470:19
+      at remoteEntry.js:3422:19
+      at 8230 (remoteEntry.js:3474:25)
+      at remoteEntry.js:3514:55
+      at Array.forEach (<anonymous>)
+      at __webpack_require__.f.consumes (remoteEntry.js:3497:35)
+      at remoteEntry.js:3166:39
+      at Array.reduce (<anonymous>)
+      at __webpack_require__.e (remoteEntry.js:3165:66)
+    ```
+
+- [ ] **FIXME:** When accessing the Angular 14 application, the page displays blank with the following error in the browser console:
+
+    ```
+    angular-architects-module-federation-tools.mjs:39
+    Error: Unsatisfied version 15.2.0 from shell of shared singleton module @angular/core (required ^14.2.0)
+      at getStrictSingletonVersion (remoteEntry.js:7560:58)
+      at remoteEntry.js:7641:19
+      at remoteEntry.js:7593:19
+      at 8043 (remoteEntry.js:7645:25)
+      at remoteEntry.js:7710:55
+      at Array.forEach (<anonymous>)
+      at __webpack_require__.f.consumes (remoteEntry.js:7693:35)
+      at ensure chunk:6:1
+      at Array.reduce (<anonymous>)
+      at __webpack_require__.e (ensure chunk:5:1)
+    ```
+
+- [ ] **FIXME:** When accessing the Angular 15 application, the page displays blank with no error in the browser console
