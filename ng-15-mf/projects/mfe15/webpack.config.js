@@ -8,8 +8,8 @@ module.exports = withModuleFederationPlugin({
     './Component': './projects/mfe15/src/app/app.component.ts',
   },
 
-  shared: {
-    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
-  },
+  // shared: {
+  //   ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  // },
 
 });

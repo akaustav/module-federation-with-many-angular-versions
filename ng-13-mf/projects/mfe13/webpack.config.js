@@ -33,7 +33,7 @@ module.exports = {
       name: 'mfe13',
       filename: 'remoteEntry.js',
       exposes: {
-        './Component': './projects/mfe13/src/app/app.component.ts',
+        './Module': './projects/mfe13/src/app/app.module.ts',
       },
 
       // For hosts (please adjust)
@@ -42,16 +42,16 @@ module.exports = {
 
       // },
 
-      shared: share({
-        '@angular/core': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        '@angular/common': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        '@angular/common/http': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        '@angular/router': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+      // shared: share({
+        // '@angular/core': { singleton: true, strictVersion: true, requiredVersion: '24.0.0' },
+        // '@angular/common': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        // '@angular/common/http': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        // '@angular/router': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
-        ...sharedMappings.getDescriptors()
-      })
+        // ...sharedMappings.getDescriptors()
+      // })
 
     }),
-    sharedMappings.getPlugin()
+    // sharedMappings.getPlugin()
   ],
 };

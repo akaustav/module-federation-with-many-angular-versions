@@ -5,6 +5,7 @@ import {
   WebComponentWrapperOptions,
 } from '@angular-architects/module-federation-tools';
 import { HomeComponent } from './home/home.component';
+import { loadRemoteModule } from '@angular-architects/module-federation';
 
 const routes: Routes = [
   {
@@ -12,17 +13,35 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
+  // {
+  //   path: 'angular13',
+  //   loadChildren: () =>
+  //     loadRemoteModule({
+  //       type: 'module',
+  //       remoteEntry: 'http://localhost:4201/remoteEntry.js',
+  //       exposedModule: './Module',
+  //     }).then((m) => m.AppModule),
+  // },
+  // {
+  //   path: 'angular15',
+  //   loadChildren: () =>
+  //     loadRemoteModule({
+  //       type: 'module',
+  //       remoteEntry: 'http://localhost:4203/remoteEntry.js',
+  //       exposedModule: './Module',
+  //     }).then((m) => m.AppModule),
+  // },
 
-  {
-    path: 'angular13',
-    component: WebComponentWrapper,
-    data: {
-      type: 'module',
-      remoteEntry: 'http://localhost:4201/remoteEntry.js',
-      exposedModule: './Component',
-      elementName: 'angular13-element',
-    } as WebComponentWrapperOptions,
-  },
+  // {
+  //   path: 'angular13',
+  //   component: WebComponentWrapper,
+  //   data: {
+  //     type: 'module',
+  //     remoteEntry: 'http://localhost:4201/remoteEntry.js',
+  //     exposedModule: './Module',
+  //     elementName: 'angular13-element',
+  //   } as WebComponentWrapperOptions,
+  // },
 
   {
     path: 'angular14',
